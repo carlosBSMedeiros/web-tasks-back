@@ -1,26 +1,25 @@
 'use strict';
 
 module.exports = {
-
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('user', {
+    return queryInterface.createTable('check', {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
         allowNull: false,
       },
-      name: {
+      id_task: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      content: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      password:{
-        type: Sequelize.STRING,
+      checked: {
+        type: Sequelize.BOOLEAN,
         allowNull: false,
-      },
-      email:{
-        type: Sequelize.STRING,
-        allowNull: true,
       },
       created_at: {
         type: Sequelize.DATE,
@@ -34,9 +33,12 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    
-    return queryInterface.dropTable('users');
+    /*
+      Add reverting commands here.
+      Return a promise to correctly handle asynchronicity.
 
-
+      Example:
+      return queryInterface.dropTable('users');
+    */
   }
 };

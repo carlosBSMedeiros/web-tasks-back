@@ -1,14 +1,12 @@
-const config = {
+module.exports = {
     dialect: 'postgres',
     host: 'localhost',
     username: 'postgres',
     password: 'elerp',
     database: 'web_tasks_back',
-    denife:{
-        timestamps: true,
+    denife: {
+        timesamps: true,
         underscored: true,
-
     },
 };
 
-module.exports = config;
