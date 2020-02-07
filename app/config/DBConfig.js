@@ -5,8 +5,8 @@ module.exports = {
     password: 'elerp',
     database: 'web_tasks_back',
     denife: {
-        timesamps: true,
         underscored: true,
+        timesamps: true,
     },
 };
 

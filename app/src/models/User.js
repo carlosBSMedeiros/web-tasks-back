@@ -7,6 +7,8 @@ class User extends Model {
             email: DataTypes.STRING,
             password: DataTypes.STRING,
         }, {
+            tableName: 'user',
+            freezeTableName: true,
             sequelize
         })
     }
