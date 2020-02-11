@@ -3,7 +3,7 @@
     module.exports = {
     
       up: (queryInterface, Sequelize) => {
-        return queryInterface.createTable('task', {
+        return queryInterface.createTable('tasks', {
           id: {
             type: Sequelize.INTEGER,
             primaryKey: true,
@@ -14,7 +14,9 @@
             type: Sequelize.INTEGER,
             foreignKey: true,
             allowNull: false,
-            autoIncrement: true,
+            references: { model: 'users', key: 'id'},
+            onUpdate:'CASCADE',
+            onDelete:'CASCADE',
           },
           title: {
             type: Sequelize.STRING,

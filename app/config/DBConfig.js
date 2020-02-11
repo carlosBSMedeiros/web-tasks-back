@@ -6,7 +6,7 @@ module.exports = {
     database: 'web_tasks_back',
     denife: {
         underscored: true,
-        timesamps: true,
+        timestamps: true,
     },
 };
 

@@ -7,8 +7,10 @@ class User extends Model {
             email: DataTypes.STRING,
             password: DataTypes.STRING,
         }, {
-            tableName: 'user',
+            tableName: 'users',
             freezeTableName: true,
+            createdAt: 'created_at',
+            updatedAt: 'updated_at',
             sequelize
         })
     }

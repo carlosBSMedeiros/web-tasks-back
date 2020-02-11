@@ -3,13 +3,17 @@ const app = express();
 
 app.use(express.json())
 
-const connection = require('./app/database/DBConnection');
+const connection = require('./app/database');
 
 var User = require('./app/src/models/User.js')
+var Task = require('./app/src/models/Task.js')
 
-require('./app/src/routes/routes.js')(app)
+User.init(connection)
+Task.init(connection)
 
-User.init(connection);
+Task.associate(connection.models)
+
+app.use(require('./app/src/routes'));
 
 const PORT = process.env.PORT || 3333;
 

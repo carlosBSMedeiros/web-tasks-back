@@ -4,7 +4,9 @@
   "description": "Backend do web app de tasks",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "nodemon dev": "node server.js",
+    "dev": "nodemon dev"
   },
   "author": "Carlos Medeiros",
   "license": "ISC",

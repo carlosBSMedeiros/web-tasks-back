@@ -2,7 +2,7 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('check', {
+    return queryInterface.createTable('checks', {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -12,6 +12,9 @@ module.exports = {
       id_task: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        references: { model: 'tasks', key: 'id'},
+        onUpdate:'CASCADE',
+        onDelete:'CASCADE'
       },
       content: {
         type: Sequelize.STRING,
@@ -33,12 +36,8 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    /*
-      Add reverting commands here.
-      Return a promise to correctly handle asynchronicity.
-
-      Example:
-      return queryInterface.dropTable('users');
-    */
+   
+      return queryInterface.dropTable('checks');
+    
   }
 };
