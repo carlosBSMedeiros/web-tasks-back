@@ -13,7 +13,7 @@ Task.init(connection)
 
 Task.associate(connection.models)
 
-app.use(require('./app/src/routes'));
+app.use(require('./app/src/routes/routes'));
 
 const PORT = process.env.PORT || 3333;
 
