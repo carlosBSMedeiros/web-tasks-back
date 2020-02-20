@@ -4,10 +4,11 @@ const User = require('../models/User');
 module.exports = {
     async create(req, res){
         try {
-            const { user_id } = req.params;
+            const { id_user } = req.params;
             const { title, description } = req.body;
 
-            const user = await User.findByPk(user_id);
+            const user = await User.findByPk(id_user);
+            console.log(id_user)
 
             if (!user)
                 return res.status(400).json({msg: 'User not find!'})   
@@ -20,7 +21,7 @@ module.exports = {
                 
             const task = await Task.create({
                 title,
-                user_id,
+                id_user,
                 description
             })
 

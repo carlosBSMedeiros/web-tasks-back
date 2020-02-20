@@ -1,12 +1,12 @@
 const { Model, DataTypes } = require('sequelize')
 
-class Task extends Model{
+class Check extends Model{
     static init(sequelize){
         super.init({
-            title: DataTypes.STRING,
-            description: DataTypes.STRING
+            content: DataTypes.STRING,
+            checked: DataTypes.BOOLEAN,
         }, {
-            tableName: 'tasks',
+            tableName: 'checks',
             freezeTableName: true,
             createdAt: 'created_at',
             updatedAt: 'updated_at',
@@ -15,8 +15,8 @@ class Task extends Model{
     }
     
     static associate(models){
-        this.belongsTo(models.User, { foreignKey: 'id_user', as: 'author' })
+        this.belongsTo(models.Task, { foreignKey: 'id_task', as:'detainer' })
     }
 }
 
-module.exports = Task;
+module.exports = Check
