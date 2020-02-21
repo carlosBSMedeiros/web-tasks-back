@@ -1,4 +1,5 @@
 const User = require('../models/User.js')
+const bcryptjs = require('bcrypt')
 
 module.exports = {
     
@@ -6,7 +7,7 @@ module.exports = {
 
         try{
 
-            var {name, password, email} = req.body;
+            var {password, email} = req.body;
 
 
             const user = await User.findOne({where: {email}});
@@ -14,9 +15,8 @@ module.exports = {
             if(!user)
                 return res.status(400).json({msg: 'Unregistered user!'})
             
-            if (user.password === password)
-                
-            user.password = undefined
+            if(!await bcryptjs.compare(password, user.password))
+                return res.status(400).send({err: 'invalid password!', password});
 
             return res.status(200).json({user})
             
