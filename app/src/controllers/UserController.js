@@ -21,7 +21,7 @@ module.exports = {
                 return res.status(400).json({msg: 'email is already being used'})
             }
 
-            if((name == null || name.trim() == '') || (password == null || password.trim() == '') || (password == null || password.trim() == ''))
+            if((name == null || name.trim() == '') || (password == null || password.trim() == '') || (email == null || email.trim() == ''))
                 return res.status(400).json({msg: 'all fields must be filled'})
             
             const user = await User.create({

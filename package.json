@@ -10,9 +10,11 @@
   "author": "Carlos Medeiros",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^4.0.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "pg": "^7.18.1",
+    "i": "^0.3.6",
+    "pg": "^7.18.2",
     "require-dir": "^1.2.0",
     "sequelize": "^5.21.3",
     "sequelize-cli": "^5.5.1"
