@@ -38,5 +38,14 @@ module.exports = {
         }
     },
 
+    async authen(req, res){
+        const { name, password } = req.body 
+    
+        if((name == null || name.trim() == '') || (password == null || password.trim() == ''))
+            return res.status(400).json({msg: 'all fields must be filled'})
+    
+        
+    
+    }
 
 };

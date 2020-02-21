@@ -27,38 +27,4 @@ class User extends Model {
     }
 }
 
-function hashPassword(password){
-    bcrypt.hash(password, 10, function(err, hash){
-        
-        if (err) 
-        return reject (err)
-        
-        return resolve (hash)
-    });
-}
-
-
 module.exports = User;
-
-
-
-/*
-const User = sequelize.define("user", {
-        name: DataTypes.STRING,
-        email: DataTypes.STRING,
-        password: DataTypes.STRING,
-        },
-    {
-        freezeTableName: true,
-        instanceMethods: {
-            generateHash(password) {
-                return bcrypt.hash(password, bcrypt.genSaltSync(8));
-            },
-            validPassword(password) {
-                return bcrypt.compare(password, this.password);
-            }
-        },
-        sequelize
-  }
-  );
-*/
