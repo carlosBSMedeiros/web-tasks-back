@@ -13,9 +13,6 @@ class User extends Model {
             createdAt: 'created_at',
             updatedAt: 'updated_at',
             hooks: {
-                
-            },
-            hooks: {
                 beforeCreate: async(User, options) => {
     
                 User.password = await bcrypt.hash(User.password, 10)

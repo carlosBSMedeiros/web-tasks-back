@@ -9,6 +9,8 @@ const CheckController = require('../controllers/CheckController')
 router.post('/user/register', UserController.create)
 router.post('/user/authenticate', AuthController.authen)
 router.post('/user/:id_user/task/create', TaskController.create)
-router.post('/user/:id_user/task/:id_task/create', CheckController.create)
+router.post('/task/:id_task/check/create', CheckController.create)
+router.delete('/task/:id/delete', TaskController.destroy)
+router.put('/task/:id/update', TaskController.alter)
 
 module.exports = router;
