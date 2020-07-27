@@ -20,11 +20,14 @@ module.exports = {
             if (description == null || description.trim() == "")
                 return res.status(400).json({msg: 'description cannot be null'})
            
-                
+            const {checks_quantity, checks_finalized} = 0
+
             const task = await Task.create({
                 title,
                 id_user,
-                description
+                description,
+                checks_quantity,
+                checks_finalized
             })
 
             return res.status(200).json({msg: 'Task created!', task})
@@ -36,10 +39,10 @@ module.exports = {
 
     async destroy(req, res){
     
-        const { id } = req.params;
-        
         try{
-        
+
+            const { id } = req.params;
+            
             console.log(id)
             
             const task = await Task.findByPk(id)
@@ -58,32 +61,56 @@ module.exports = {
 
     async alter(req, res){
         
-        const { id } = req.params;
-        const { title, description } = req.body;
-
-        const task = await Task.findByPk(id)
-
-        if(!task)
-            return res.status(400).json({msg: 'Task not found!'})
-
-        if(title == null || title.trim() == "")
-            return res.status(400).json({msg: 'Title cannot be null!'})
-
-        if(description == null || description.trim() == "")
-            return res.status(400).json({msg: 'Description cannot be null!'})
-
-        await task.update({
-            title,
-            description
-        })
-
-        return res.status(200).json({msg: 'Task updated!'})
+        try{ 
         
+            const { id } = req.params;
+            const { title, description } = req.body;
+
+            if(title == null || title.trim() == "")
+                return res.status(400).json({msg: 'Title cannot be null!'})
+
+            if(description == null || description.trim() == "")
+                return res.status(400).json({msg: 'Description cannot be null!'})
+
+            const task = await Task.findByPk(id)
+
+            if(!task)
+                return res.status(400).json({msg: 'Task not found!'})
+
+            await task.update({
+                title,
+                description
+            })
+
+            return res.status(200).json({msg: 'Task updated!'})
+        
+        }catch(err){
+            return res.status(400).json({msg: 'Erro!'})
+        } 
     },
 
     async listAll(req, res){
 
-        const { id_user } = req.params
+        try{
+        console.log('teste')
+      
+        const {id_user} = req.params
+
+        console.log('teste 2')
+
+        var tasks = await Task.findAll({
+            where: {
+                id_user
+            }
+        })
+
+        return res.status(200).json({msg: 'listAll successfylly concluded', tasks})
+
+        } catch(err){
+            return res.status(400).json({msg: 'Erro!', err})
+        }
+
     }
+
 
 }

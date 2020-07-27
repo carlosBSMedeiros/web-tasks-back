@@ -16,7 +16,7 @@ module.exports = {
                 return res.status(400).json({msg: 'Unregistered user!'})
             
             if(!await bcryptjs.compare(password, user.password))
-                return res.status(400).send({err: 'invalid password!', password});
+                return res.status(400).send({msg: 'invalid password!', password});
 
             return res.status(200).json({user})
             
