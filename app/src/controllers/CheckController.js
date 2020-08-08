@@ -10,10 +10,15 @@ module.exports = {
         const { content } = req.body
         
         const task = await Task.findByPk(id_task)
-        console.log(id_task)
 
         if(!task)
             return res.status(400).json({msg: 'Task not find!'})
+
+        const checks_quantity = task.checks_quantity + 1
+
+        await task.update({
+            checks_quantity
+        })
 
         if(content == null)
             return res.status(400).json({msg: 'Content cannot null'})
@@ -65,6 +70,46 @@ module.exports = {
         try{
            
             const {id} = req.params;
+
+            const check = await Check.findByPk(id)
+
+            if(!check){
+                return res.status(400).json({msg: 'Check not found!'})
+            }
+  
+            const id_task = check.id_task
+            const task = await Task.findByPk(id_task)
+
+            const checkStatus = check.checked
+
+            var checksf = task.checks_finalized
+
+            if(checkStatus == true){
+
+                await check.update({
+                    checked: false
+                })
+
+                await task.update({
+                    checks_finalized: checksf - 1
+                })
+
+            } else {
+
+                await check.update({
+                    checked: true
+                })
+
+                await task.update({
+                    checks_finalized: checksf + 1
+                })
+
+            }
+
+            /*
+            try{
+           
+            const {id} = req.params;
             const {checked} = req.query;
 
             const check = await Check.findByPk(id)
@@ -73,13 +118,31 @@ module.exports = {
                 return res.status(400).json({msg: 'Check not found!'})
             }
   
-            checkStatus = (checked == 'true' ? true : false)
-          
+            const checkStatus = (checked == 'true' ? true : false)
+
             await check.update({
-                checkStatus
+                checked: checkStatus
+            })
+
+            //atualiza a quantidade de checks finalizados na task
+
+            const id_task = check.id_task
+
+            const task = await Task.findByPk(id_task)
+            const checks_finalized = (checkStatus == true) ? task.checks_finalized + 1 : task.checks_finalized - 1
+
+            await task.update({
+                checks_finalized
             })
             
-          
+
+            return res.status(200).json({msg: 'Check updated!'})
+
+        }catch(err){
+            return res.status(400).json({msg: 'Erro!', err})
+        }
+            
+            */
 
             return res.status(200).json({msg: 'Check updated!'})
 

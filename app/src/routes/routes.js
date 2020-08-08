@@ -17,7 +17,7 @@ router.get('/user/:id_user/task/list', TaskController.listAll)
 
 router.post('/task/:id_task/check/create', CheckController.create)
 router.put('/check/:id/update', CheckController.alter)
-router.put('/check/:id/checked', CheckController.checkUncheck)
+router.put('/check/:id/checkchange', CheckController.checkUncheck)
 router.delete('/check/:id/delete', CheckController.destroy)
 router.get('/task/:id_task/check/listall', CheckController.listAll)
 

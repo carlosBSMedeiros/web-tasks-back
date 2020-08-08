@@ -26,6 +26,14 @@
             type: Sequelize.STRING,
             allowNull: false,
           },
+          checks_quantity: {
+            type: Sequelize.INTEGER,
+            allowNull: true
+          },
+          checks_finalized:{
+            type: Sequelize.INTEGER,
+            allowNull: true
+          },
           created_at: {
             type: Sequelize.DATE,
             allowNull: false,

@@ -4,7 +4,9 @@ class Task extends Model{
     static init(sequelize){
         super.init({
             title: DataTypes.STRING,
-            description: DataTypes.STRING
+            description: DataTypes.STRING,
+            checks_quantity: DataTypes.INTEGER,
+            checks_finalized: DataTypes.INTEGER
         }, {
             tableName: 'tasks',
             freezeTableName: true,

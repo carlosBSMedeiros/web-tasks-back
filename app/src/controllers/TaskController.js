@@ -19,8 +19,9 @@ module.exports = {
             
             if (description == null || description.trim() == "")
                 return res.status(400).json({msg: 'description cannot be null'})
-           
-            const {checks_quantity, checks_finalized} = 0
+
+            const checks_quantity = 0 
+            const checks_finalized = 0
 
             const task = await Task.create({
                 title,
